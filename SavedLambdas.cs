@@ -14,12 +14,27 @@ namespace AWSLambdaUrlCall
 {
     public partial class SavedLambdas : Form
     {
+        public static string ModeOpen = "open";
+        public static string ModeDelete = "delete";
+        
         private string SavePath;
         private BindingList<LambdaURL> lambdaUrlConfigs;
 
-        public SavedLambdas()
+        public SavedLambdas(String mode)
         {
             InitializeComponent();
+
+            this.btnOpen.Visible = false;
+            this.btnDelete.Visible = false;
+
+            if (mode == ModeOpen)
+            {
+                this.btnOpen.Visible = true;
+            }
+            if (mode == ModeDelete)
+            {
+                this.btnDelete.Visible = true;
+            }
 
             this.SavePath = "assets/lambda_configs.json";
 

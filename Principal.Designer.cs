@@ -29,6 +29,7 @@ namespace AWSLambdaUrlCall
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Principal));
             this.label1 = new System.Windows.Forms.Label();
             this.txtProfile = new System.Windows.Forms.TextBox();
@@ -49,15 +50,20 @@ namespace AWSLambdaUrlCall
             this.txtRegion = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.novoMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrirMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salvarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excluirMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreURLsDeFunçãoLambdaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.sobreURLsDeFunçãoLambdaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtContent = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -190,17 +196,18 @@ namespace AWSLambdaUrlCall
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtResultado.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txtResultado.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtResultado.Location = new System.Drawing.Point(15, 316);
+            this.txtResultado.Location = new System.Drawing.Point(411, 329);
             this.txtResultado.Name = "txtResultado";
             this.txtResultado.ReadOnly = true;
-            this.txtResultado.Size = new System.Drawing.Size(773, 279);
+            this.txtResultado.Size = new System.Drawing.Size(377, 375);
             this.txtResultado.TabIndex = 5;
             this.txtResultado.Text = "";
+            this.txtResultado.WordWrap = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 300);
+            this.label6.Location = new System.Drawing.Point(408, 313);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 6;
@@ -209,7 +216,7 @@ namespace AWSLambdaUrlCall
             // btnRequest
             // 
             this.btnRequest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRequest.Location = new System.Drawing.Point(528, 601);
+            this.btnRequest.Location = new System.Drawing.Point(528, 710);
             this.btnRequest.Name = "btnRequest";
             this.btnRequest.Size = new System.Drawing.Size(260, 23);
             this.btnRequest.TabIndex = 13;
@@ -251,13 +258,22 @@ namespace AWSLambdaUrlCall
             // arquivoToolStripMenuItem
             // 
             this.arquivoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.novoMenuItem,
             this.abrirMenuItem,
             this.salvarMenuItem,
+            this.excluirMenuItem,
             this.toolStripSeparator1,
             this.sairMenuItem});
             this.arquivoToolStripMenuItem.Name = "arquivoToolStripMenuItem";
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.arquivoToolStripMenuItem.Text = "Arquivo";
+            // 
+            // novoMenuItem
+            // 
+            this.novoMenuItem.Name = "novoMenuItem";
+            this.novoMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoMenuItem.Text = "Novo";
+            this.novoMenuItem.Click += new System.EventHandler(this.novoMenuItem_Click);
             // 
             // abrirMenuItem
             // 
@@ -272,6 +288,13 @@ namespace AWSLambdaUrlCall
             this.salvarMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salvarMenuItem.Text = "Salvar";
             this.salvarMenuItem.Click += new System.EventHandler(this.salvarMenuItem_Click);
+            // 
+            // excluirMenuItem
+            // 
+            this.excluirMenuItem.Name = "excluirMenuItem";
+            this.excluirMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excluirMenuItem.Text = "Excluir";
+            this.excluirMenuItem.Click += new System.EventHandler(this.excluirMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -292,6 +315,12 @@ namespace AWSLambdaUrlCall
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ajudaToolStripMenuItem.Text = "Ajuda";
+            // 
+            // sobreURLsDeFunçãoLambdaMenuItem
+            // 
+            this.sobreURLsDeFunçãoLambdaMenuItem.Name = "sobreURLsDeFunçãoLambdaMenuItem";
+            this.sobreURLsDeFunçãoLambdaMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.sobreURLsDeFunçãoLambdaMenuItem.Text = "Sobre URLs de Função Lambda";
             // 
             // sobreMenuItem
             // 
@@ -319,18 +348,39 @@ namespace AWSLambdaUrlCall
             this.label8.TabIndex = 17;
             this.label8.Text = "Nome da função";
             // 
-            // sobreURLsDeFunçãoLambdaMenuItem
+            // label9
             // 
-            this.sobreURLsDeFunçãoLambdaMenuItem.Name = "sobreURLsDeFunçãoLambdaMenuItem";
-            this.sobreURLsDeFunçãoLambdaMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.sobreURLsDeFunçãoLambdaMenuItem.Text = "Sobre URLs de Função Lambda";
-            this.sobreURLsDeFunçãoLambdaMenuItem.Click += new System.EventHandler(this.sobreURLsDeFunçãoLambdaMenuItem_Click);
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(12, 313);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(146, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Conteúdo para enviar (JSON)";
+            // 
+            // txtContent
+            // 
+            this.txtContent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtContent.BackColor = System.Drawing.SystemColors.Window;
+            this.txtContent.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContent.Location = new System.Drawing.Point(15, 329);
+            this.txtContent.Name = "txtContent";
+            this.txtContent.Size = new System.Drawing.Size(377, 375);
+            this.txtContent.TabIndex = 21;
+            this.txtContent.Text = "";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 636);
+            this.ClientSize = new System.Drawing.Size(800, 745);
+            this.Controls.Add(this.txtContent);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -388,6 +438,11 @@ namespace AWSLambdaUrlCall
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripMenuItem sobreURLsDeFunçãoLambdaMenuItem;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RichTextBox txtContent;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem novoMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem excluirMenuItem;
     }
 }
 

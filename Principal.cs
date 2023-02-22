@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -42,16 +43,31 @@ namespace AWSLambdaUrlCall
             this.LoadSavings();
             this.LoadLastUsed();
 
-            /*if (this.lambdaUrlConfigs.Count > 0)
-            {
-                this.LoadLambdaConfig(this.lambdaUrlConfigs[0]);
-            }*/
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private String formatJson(String jsonData)
+        {
+            object content = JsonConvert.DeserializeObject<object>(jsonData);
+            String content_str = JsonConvert.SerializeObject(content, Formatting.Indented);
+            return content_str;
+        }
+
+        private bool validateJson(String jsonData)
+        {
+            try
+            {
+                object content = JsonConvert.DeserializeObject<object>(jsonData);
+                return true;
+            } catch
+            {
+                return false;
+            }
+
         }
 
         public bool LoadLastUsed()
@@ -79,6 +95,7 @@ namespace AWSLambdaUrlCall
             this.lastUsedLambda.Profile = this.txtProfile.Text;
             this.lastUsedLambda.Region = this.txtRegion.Text;
             this.lastUsedLambda.Url = this.txtUrl.Text;
+            this.lastUsedLambda.Content = this.txtContent.Text;
 
             string lambda = JsonConvert.SerializeObject(this.lastUsedLambda);
             File.WriteAllText(this.LastUsedPath, lambda);
@@ -104,6 +121,7 @@ namespace AWSLambdaUrlCall
             this.txtProfile.Text = lambda.Profile;
             this.txtRegion.Text = lambda.Region;
             this.txtUrl.Text = lambda.Url;
+            this.txtContent.Text = lambda.Content;
         }
 
         private void btnGetCredentials_Click(object sender, EventArgs e)
@@ -127,19 +145,40 @@ namespace AWSLambdaUrlCall
                 }
             } else
             {
-                this.txtResultado.Text = "Não foi possível obter as credenciais. Preencha o profile, URL e região e tente novamente.";
+                String msg = "Não foi possível obter as credenciais.\nPreencha o profile, URL e região e tente novamente.";
+                MessageBox.Show(msg, "Erro");
             }
         }
 
         private void btnRequest_Click(object sender, EventArgs e)
         {
-           this.requestSigned();
+
+            if (this.validateJson(this.txtContent.Text))
+            {
+                String content = this.formatJson(this.txtContent.Text);
+                this.txtContent.Text = content;
+
+                this.SaveLastUsed();
+                this.requestSigned();
+            } else
+            {
+                MessageBox.Show("Conteúdo inválido. O JSON contém erros.", "Erro");
+            }
+           
         }
 
         private async void requestSigned()
         {
+            this.txtResultado.Text = "";
+
+            if (this.txtAccessKeyId.Text == "" || this.txtSecretAccessKey.Text == "" || this.txtSessionToken.Text == "")
+            {
+                MessageBox.Show("As credenciais não podem estar vazias ou inválidas.", "Erro");
+                return;
+            }
+
             var signer = new AWS4RequestSigner(this.txtAccessKeyId.Text, this.txtSecretAccessKey.Text);
-            var content = new StringContent("", Encoding.UTF8, "application/json");
+            var content = new StringContent(this.txtContent.Text, Encoding.UTF8, "application/json");
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Post,
@@ -155,6 +194,11 @@ namespace AWSLambdaUrlCall
             var response = await client.SendAsync(request);
 
             this.txtResultado.Text = await response.Content.ReadAsStringAsync();
+
+            if (this.validateJson(this.txtResultado.Text))
+            {
+                this.txtResultado.Text = this.formatJson(this.txtResultado.Text);
+            }
         }
 
         private void sobreMenuItem_Click(object sender, EventArgs e)
@@ -166,7 +210,13 @@ namespace AWSLambdaUrlCall
 
         private void abrirMenuItem_Click(object sender, EventArgs e)
         {
-            SavedLambdas formSaved = new SavedLambdas();
+            SavedLambdas formSaved = new SavedLambdas(SavedLambdas.ModeOpen);
+            formSaved.Show();
+        }
+
+        private void excluirMenuItem_Click(object sender, EventArgs e)
+        {
+            SavedLambdas formSaved = new SavedLambdas(SavedLambdas.ModeDelete);
             formSaved.Show();
         }
 
@@ -180,6 +230,7 @@ namespace AWSLambdaUrlCall
             lambda.Profile = this.txtProfile.Text;
             lambda.Region = this.txtRegion.Text;
             lambda.Url = this.txtUrl.Text;
+            lambda.Content = this.txtContent.Text;
 
             bool exits= this.lambdaUrlConfigs.Any(item => item.Name == this.txtName.Text || item.Url == this.txtUrl.Text);
 
@@ -206,6 +257,23 @@ namespace AWSLambdaUrlCall
         {
             String url = "https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-urls.html?icmpid=docs_lambda_help";
             Process.Start(url);
+        }
+
+        private void novoMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.txtAccessKeyId.Text = "";
+            this.txtSecretAccessKey.Text = "";
+            this.txtSessionToken.Text = "";
+
+            this.txtRegion.Text = "";
+            this.txtName.Text = "";
+            this.txtUrl.Text = "";
+            this.txtProfile.Text = "";
+
+            this.txtContent.Text = "";
+            this.txtResultado.Text = "";
+
         }
     }
 }
