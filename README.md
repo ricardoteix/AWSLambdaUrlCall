@@ -48,3 +48,5 @@ Após obter as credenciais e preencher os campos corretamente, será possível r
 Caso seja preciso enviar dados na requisição use o campo *Conteúdo para enviar (JSON)*. Deve ser um texto no formato JSON.
 
 O campo *Resultado* exibirá o retorno da sua função após a execução ou informações de possíveis problemas que ocorram, como token expirado.
+
+![Tela do software](https://github.com/ricardoteix/AWSLambdaUrlCall/blob/master/assets/print.jpg?raw=true)
