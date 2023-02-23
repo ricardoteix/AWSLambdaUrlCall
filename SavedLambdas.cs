@@ -61,13 +61,17 @@ namespace AWSLambdaUrlCall
 
         private void btnOpen_Click(object sender, EventArgs e)
         {
+
             LambdaURL lambda = (LambdaURL)this.lstLambdaUrl.SelectedItem;
 
-            if (Application.OpenForms["Principal"] != null)
+            if (Application.OpenForms["Principal"] != null && lambda != null)
             {
                 Principal formPrincipal = (Application.OpenForms["Principal"] as Principal);
                 formPrincipal.LoadLambdaConfig(lambda);
                 this.Close();
+            } else
+            {
+                MessageBox.Show("Não foi possível abrir uma configuração.", "Informação");
             }
         }
 

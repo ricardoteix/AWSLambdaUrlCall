@@ -203,8 +203,9 @@ namespace AWSLambdaUrlCall
 
         private void sobreMenuItem_Click(object sender, EventArgs e)
         {
-            String mensagem = "Desenvolvido por Ricardo Teixeira\n";
+            String mensagem = "Ricardo Teixeira\n";
             mensagem += "github.com/ricardoteix\n\n";
+            mensagem += "Versão 1.0\n\n";
             MessageBox.Show(mensagem, "Sobre " + this.Text);
         }
 
@@ -253,7 +254,7 @@ namespace AWSLambdaUrlCall
             this.SaveLastUsed();
         }
 
-        private void sobreURLsDeFunçãoLambdaMenuItem_Click(object sender, EventArgs e)
+        private void sobreURLLambdaMenuItem_Click(object sender, EventArgs e)
         {
             String url = "https://docs.aws.amazon.com/pt_br/lambda/latest/dg/lambda-urls.html?icmpid=docs_lambda_help";
             Process.Start(url);

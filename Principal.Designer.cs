@@ -57,7 +57,7 @@ namespace AWSLambdaUrlCall
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.sairMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ajudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sobreURLsDeFunçãoLambdaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sobreURLLambdaMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sobreMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtName = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -271,56 +271,57 @@ namespace AWSLambdaUrlCall
             // novoMenuItem
             // 
             this.novoMenuItem.Name = "novoMenuItem";
-            this.novoMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.novoMenuItem.Size = new System.Drawing.Size(109, 22);
             this.novoMenuItem.Text = "Novo";
             this.novoMenuItem.Click += new System.EventHandler(this.novoMenuItem_Click);
             // 
             // abrirMenuItem
             // 
             this.abrirMenuItem.Name = "abrirMenuItem";
-            this.abrirMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.abrirMenuItem.Size = new System.Drawing.Size(109, 22);
             this.abrirMenuItem.Text = "Abrir";
             this.abrirMenuItem.Click += new System.EventHandler(this.abrirMenuItem_Click);
             // 
             // salvarMenuItem
             // 
             this.salvarMenuItem.Name = "salvarMenuItem";
-            this.salvarMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salvarMenuItem.Size = new System.Drawing.Size(109, 22);
             this.salvarMenuItem.Text = "Salvar";
             this.salvarMenuItem.Click += new System.EventHandler(this.salvarMenuItem_Click);
             // 
             // excluirMenuItem
             // 
             this.excluirMenuItem.Name = "excluirMenuItem";
-            this.excluirMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.excluirMenuItem.Size = new System.Drawing.Size(109, 22);
             this.excluirMenuItem.Text = "Excluir";
             this.excluirMenuItem.Click += new System.EventHandler(this.excluirMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(106, 6);
             // 
             // sairMenuItem
             // 
             this.sairMenuItem.Name = "sairMenuItem";
-            this.sairMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sairMenuItem.Size = new System.Drawing.Size(109, 22);
             this.sairMenuItem.Text = "Sair";
             // 
             // ajudaToolStripMenuItem
             // 
             this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sobreURLsDeFunçãoLambdaMenuItem,
+            this.sobreURLLambdaMenuItem,
             this.sobreMenuItem});
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
             this.ajudaToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.ajudaToolStripMenuItem.Text = "Ajuda";
             // 
-            // sobreURLsDeFunçãoLambdaMenuItem
+            // sobreURLLambdaMenuItem
             // 
-            this.sobreURLsDeFunçãoLambdaMenuItem.Name = "sobreURLsDeFunçãoLambdaMenuItem";
-            this.sobreURLsDeFunçãoLambdaMenuItem.Size = new System.Drawing.Size(237, 22);
-            this.sobreURLsDeFunçãoLambdaMenuItem.Text = "Sobre URLs de Função Lambda";
+            this.sobreURLLambdaMenuItem.Name = "sobreURLLambdaMenuItem";
+            this.sobreURLLambdaMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.sobreURLLambdaMenuItem.Text = "Sobre URLs de Função Lambda";
+            this.sobreURLLambdaMenuItem.Click += new System.EventHandler(this.sobreURLLambdaMenuItem_Click);
             // 
             // sobreMenuItem
             // 
@@ -437,7 +438,7 @@ namespace AWSLambdaUrlCall
         private System.Windows.Forms.ToolStripMenuItem sairMenuItem;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ToolStripMenuItem sobreURLsDeFunçãoLambdaMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sobreURLLambdaMenuItem;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RichTextBox txtContent;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
