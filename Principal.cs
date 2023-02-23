@@ -276,5 +276,11 @@ namespace AWSLambdaUrlCall
             this.txtResultado.Text = "";
 
         }
+
+        private void comoUsarMenuItem_Click(object sender, EventArgs e)
+        {
+            String url = "https://github.com/ricardoteix/AWSLambdaUrlCall";
+            Process.Start(url);
+        }
     }
 }

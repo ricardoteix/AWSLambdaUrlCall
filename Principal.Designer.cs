@@ -64,6 +64,7 @@ namespace AWSLambdaUrlCall
             this.label9 = new System.Windows.Forms.Label();
             this.txtContent = new System.Windows.Forms.RichTextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.comoUsarMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -310,6 +311,7 @@ namespace AWSLambdaUrlCall
             // ajudaToolStripMenuItem
             // 
             this.ajudaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.comoUsarMenuItem,
             this.sobreURLLambdaMenuItem,
             this.sobreMenuItem});
             this.ajudaToolStripMenuItem.Name = "ajudaToolStripMenuItem";
@@ -374,6 +376,13 @@ namespace AWSLambdaUrlCall
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // comoUsarMenuItem
+            // 
+            this.comoUsarMenuItem.Name = "comoUsarMenuItem";
+            this.comoUsarMenuItem.Size = new System.Drawing.Size(237, 22);
+            this.comoUsarMenuItem.Text = "Como usar";
+            this.comoUsarMenuItem.Click += new System.EventHandler(this.comoUsarMenuItem_Click);
             // 
             // Principal
             // 
@@ -444,6 +453,7 @@ namespace AWSLambdaUrlCall
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem novoMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excluirMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem comoUsarMenuItem;
     }
 }
 
